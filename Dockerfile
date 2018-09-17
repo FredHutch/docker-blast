@@ -8,7 +8,8 @@ RUN apt update && \
 
 RUN cd /usr/local/bin && \
     wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.7.1/ncbi-blast-2.7.1+-x64-linux.tar.gz && \
-    tar xzvf ncbi-blast-2.7.1+-x64-linux.tar.gz
+    tar xzvf ncbi-blast-2.7.1+-x64-linux.tar.gz && \
+    ln -s $PWD/ncbi-blast-2.7.1+/bin/* ./
 
 # Add the script to the PATH
 ADD ./run.py /usr/local/bin/

@@ -6,11 +6,11 @@
 }
 
 @test "BLAST installed" {
-  v="$(blastn -help 2>&1 || true )"
-  [[ "$v" =~ "BLAST" ]]
+  v="$(blastn -version)"
+  [[ "$v" =~ "2.7.1" ]]
 }
 
 @test "AWS CLI installed" {
   v="$(aws s3 --version 2>&1 || true )"
-  [[ "$v" =~ "S3" ]]
+  [[ "$v" =~ "aws-cli" ]]
 }
