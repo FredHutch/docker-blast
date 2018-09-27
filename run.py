@@ -24,11 +24,11 @@ def run_cmds(commands, retry=0, catchExcept=False):
     exitcode = p.wait()
     if stdout:
         logging.info("Standard output of subprocess:")
-        for line in stdout.split('\n'):
+        for line in stdout.decode("utf-8").split('\n'):
             logging.info(line)
     if stderr:
         logging.info("Standard error of subprocess:")
-        for line in stderr.split('\n'):
+        for line in stderr.decode("utf-8").split('\n'):
             logging.info(line)
 
     # Check the exit code
