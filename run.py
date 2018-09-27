@@ -74,7 +74,7 @@ def get_file_from_url(url_path, temp_folder):
     # Get files from an FTP server
     elif url_path.startswith('ftp://'):
         logging.info("Getting reads from FTP")
-        run_cmds(['wget', '-P', temp_folder, input_str])
+        run_cmds(['wget', '-P', temp_folder, url_path])
 
     else:
         raise Exception(
