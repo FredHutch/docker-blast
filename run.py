@@ -124,6 +124,18 @@ if __name__ == "__main__":
                         type=str,
                         default="7",
                         help="""Output format for BLAST.""")
+    parser.add_argument("--perc-identity",
+                        type=float,
+                        default=50.,
+                        help="""Minimum percent identity for alignments.""")
+    parser.add_argument("--qcov-hsp-perc",
+                        type=float,
+                        default=50.,
+                        help="""Percent query coverage per hsp.""")
+    parser.add_argument("--max-target-seqs",
+                        type=int,
+                        default=500,
+                        help="""Maximum number of alignments to report per query.""")
     parser.add_argument("--output-log",
                         type=str,
                         required=True,
@@ -201,7 +213,10 @@ if __name__ == "__main__":
             "-query", query_fp,
             "-subject", subject_fp,
             "-out", output_fp,
-            "-outfmt", args.outfmt
+            "-outfmt", args.outfmt,
+            "-perc_identity", str(args.perc_identity),
+            "-max_target_seqs", str(args.max_target_seqs),
+            "-qcov_hsp_perc", str(args.qcov_hsp_perc)
         ])
     except:
         exit_and_clean_up(temp_folder)
