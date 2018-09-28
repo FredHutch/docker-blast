@@ -206,14 +206,21 @@ if __name__ == "__main__":
         exit_and_clean_up(temp_folder)
 
     # Unzip the query or the subject
-    for fp in [query_fp, subject_fp]:
-        if fp.endswith(".gz"):
-            logging.info("Decompressing " + fp)
-            try:
-                run_cmds(["gunzip", fp])
-            except:
-                exit_and_clean_up(temp_folder)
-            fp = fp.replace(".gz", "")
+    if query_fp.endswith(".gz"):
+        logging.info("Decompressing " + query_fp)
+        try:
+            run_cmds(["gunzip", query_fp])
+        except:
+            exit_and_clean_up(temp_folder)
+        query_fp = query_fp.replace(".gz", "")
+
+    if subject_fp.endswith(".gz"):
+        logging.info("Decompressing " + subject_fp)
+        try:
+            run_cmds(["gunzip", subject_fp])
+        except:
+            exit_and_clean_up(temp_folder)
+        subject_fp = subject_fp.replace(".gz", "")
 
     logging.info("Query: " + query_fp)
     logging.info("Subject: " + subject_fp)
