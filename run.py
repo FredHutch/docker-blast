@@ -208,16 +208,28 @@ if __name__ == "__main__":
     # Run BLAST
     output_fp = os.path.join(temp_folders["output"], "output.aln")
     try:
-        run_cmds([
-            args.blast_type,
-            "-query", query_fp,
-            "-subject", subject_fp,
-            "-out", output_fp,
-            "-outfmt", args.outfmt,
-            "-perc_identity", str(args.perc_identity),
-            "-max_target_seqs", str(args.max_target_seqs),
-            "-qcov_hsp_perc", str(args.qcov_hsp_perc)
-        ])
+        if args.blast_type == "blastn":
+            # Only use "perc_identity" for "blastn"
+            run_cmds([
+                args.blast_type,
+                "-query", query_fp,
+                "-subject", subject_fp,
+                "-out", output_fp,
+                "-outfmt", args.outfmt,
+                "-perc_identity", str(args.perc_identity),
+                "-max_target_seqs", str(args.max_target_seqs),
+                "-qcov_hsp_perc", str(args.qcov_hsp_perc)
+            ])
+        else:
+            run_cmds([
+                args.blast_type,
+                "-query", query_fp,
+                "-subject", subject_fp,
+                "-out", output_fp,
+                "-outfmt", args.outfmt,
+                "-max_target_seqs", str(args.max_target_seqs),
+                "-qcov_hsp_perc", str(args.qcov_hsp_perc)
+            ])
     except:
         exit_and_clean_up(temp_folder)
 
