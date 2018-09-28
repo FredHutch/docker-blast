@@ -205,6 +205,19 @@ if __name__ == "__main__":
     except:
         exit_and_clean_up(temp_folder)
 
+    # Unzip the query or the subject
+    for fp in [query_fp, subject_fp]:
+        if fp.endswith(".gz"):
+            logging.info("Decompressing " + fp)
+            try:
+                run_cmds(["gunzip", fp])
+            except:
+                exit_and_clean_up(temp_folder)
+            fp = fp.replace(".gz", "")
+
+    logging.info("Query: " + query_fp)
+    logging.info("Subject: " + subject_fp)
+
     # Run BLAST
     output_fp = os.path.join(temp_folders["output"], "output.aln")
     try:
